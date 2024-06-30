@@ -1,0 +1,41 @@
+🚀 [Desafio 006] Desenvolvimento de um Sistema de Gestão de Barraca de Venda de Frutas
+
+O objetivo desse desafio é sistema de gestão para uma barraca de venda de frutas utilizando o framework Django e um SGBD de sua escolha. Siga as especificações abaixo para completar o desafio:
+
+1. Orientações Gerais:
+    - Utilize o Django como framework, utilizando sua versão mais recente.
+    - O SGBD fica à seu critério
+
+2. Descrição do Sistema:
+    - O sistema terá como objetivo gerenciar uma barraca de venda de frutas.
+    - A avaliação irá analisar a modelagem do banco, a forma de codificação e a utilização adequada do framework.
+
+3. Requisitos Funcionais:
+    - Autenticação de Usuários:
+        - O sistema deve possuir autenticação de usuários com senhas distintas para acesso como usuário vendedor e administrador. 
+    - Perfis de Usuário:
+        - O perfil de administrador pode cadastrar frutas para venda na barraca, mas não pode vendê-las.
+        - O perfil de vendedor vende as frutas e pode visualizar o relatório de vendas.
+
+    - Cadastro de Frutas:
+        - As frutas devem ser cadastradas com os seguintes atributos:
+            - Nome da fruta
+            - Classificação (Extra, de primeira, de segunda ou de terceira)
+            - Fresca (sim ou não)
+            - Quantidade disponível para venda (número inteiro)
+            - Valor de venda.
+
+    - Relatório de Vendas:
+        - O relatório de vendas deve incluir o horário da venda e o valor, listando individualmente os itens vendidos.
+        - Este relatório deve ser acessado somente pelo vendedor.
+
+    - Operações do Vendedor:
+        - O perfil de vendedor pode:
+            - Vender frutas com opção de desconto nos termos de porcentagem (5%, 10%, 15%, 20% ou 25%).
+            - Pesquisar as frutas disponíveis para venda.
+            - Filtrar frutas pelos tipos de atributos.
+
+    - Operações do Administrador:
+        - O perfil de administrador pode:
+            - Cadastrar, editar e excluir fruta.
+            - Cadastrar, editar e excluir vendedores.

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <header>
+        <h1>O Mango do Django</h1>
+    </header>
+    
+    <nav>
+        <ul>
+            {% comment %} <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'fruits' %}">Fruits</a></li>
+            <li><a href="{% url 'about' %}">About</a></li> {% endcomment %}
+        </ul>
+    </nav>
+    
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+    
+    <footer>
+        <p>&copy; 2022 My Frutaria. All rights reserved.</p>
+    </footer>
+</body>
+</html>
