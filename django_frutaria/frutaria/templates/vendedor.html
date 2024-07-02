@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 class="titulo-principal">Bem-vindo, Vendedor!</h1>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <p class="descricao">Aqui você pode gerenciar as vendas da frutaria.</p>    
+    <h2 class="titulo-secao">Realizar Venda</h2>
+    <form action="{% url 'sale' vendedor=vendedor_id %}" method="post" class="formulario">
+        {% csrf_token %}
+        <label for="produto" class="rotulo">Produto:</label>
+        <select name="fruta" id="fruta" class="selecao">
+            {% for fruta in frutas %}
+            <option value="{{ fruta.id }}">{{ fruta.nome }}</option>
+            {% endfor %}
+        </select>
+        <label for="quantidade" class="rotulo">Quantidade:</label>
+        <input type="number" name="quantidade" id="quantidade" class="entrada">        
+        <input type="submit" value="Realizar Venda" class="botao">
+    </form>
+    
+    <h2 class="titulo-secao">Relatório de Vendas</h2>
+    <form action="{% url 'relatorioVendedor' vendedor_id %}" method="get" class="formulario">
+        <!-- Add report filters here -->
+        <input type="submit" value="Gerar Relatório" class="botao">
+    </form>
+{% endblock %}

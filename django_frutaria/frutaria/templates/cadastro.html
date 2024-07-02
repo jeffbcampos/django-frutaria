@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Registrar</h2>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <form method="POST" class="cadastro-form" action="{% url 'create_user' %}">
+        {% csrf_token %}
+        <div>
+            <label for="nome">Username:</label>
+            <input type="text" id="username" name="nome" required>
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <div>
+            <label for="role">Cargo:</label>
+            <select id="role" name="role" required>
+                <option value="admin">Admin</option>
+                <option value="vendedor">Vendedor</option>
+            </select>
+        </div>
+        <button type="submit">Cadastre</button>
+    </form>
+{% endblock %}

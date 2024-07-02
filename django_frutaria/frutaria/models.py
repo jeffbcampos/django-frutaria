@@ -13,7 +13,7 @@ class Fruta(models.Model):
     preco = models.DecimalField(max_digits=5, decimal_places=2)
 
 class Vendas(models.Model):
-    fruta = models.ForeignKey(Fruta, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    fruta = models.ForeignKey(Fruta, on_delete=models.CASCADE)    
     qtd_vendida = models.IntegerField()
+    vendedor_id = models.PositiveIntegerField()
     data_venda = models.DateTimeField(auto_now_add=True)

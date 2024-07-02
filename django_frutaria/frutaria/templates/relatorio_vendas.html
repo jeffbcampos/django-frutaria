@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Relatório de Vendas</h2>
+    <table class="tabela-vendas">
+        <thead>
+            <tr>
+                <th>ID da Venda</th>
+                <th>Produto</th>
+                <th>Quantidade</th>
+                <th>Valor Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for venda in vendas %}
+            <tr>
+                <td>{{ venda.id }}</td>
+                <td>{{ venda.fruta.nome }}</td>
+                <td>{{ venda.qtd_vendida }}</td>
+                <td>R$ {{ venda.fruta.preco | floatformat:2 }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <button onclick="window.history.back();" class="botao">Voltar</button>
+{% endblock %}

@@ -3,4 +3,10 @@
 {% block content %}
     <h1>Welcome to the Admin Page</h1>
     <p>This is the admin page for your Frutaria website.</p>
+    
+    <!-- Links para páginas de cadastro -->
+    <div>
+        <a href="{% url 'create_fruit' %}">Cadastrar Fruta</a>
+        <a href="{% url 'cadastro' %}">Cadastrar Vendedor</a>
+    </div>
 {% endblock %}
