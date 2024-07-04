@@ -57,7 +57,7 @@ body {
     border-radius: 3px;
     cursor: pointer;
     margin-bottom: 10px;
-    margin-top: 15px;
+    margin-top: 25px;
 }
 
 .login-form button:hover,
@@ -150,14 +150,92 @@ body {
 .tabela-vendas {
     width: 100%;
     border-collapse: collapse;
-}
-.tabela-vendas, .tabela-vendas th, .tabela-vendas td {
-    border: 1px solid #ddd;
+    margin-bottom: 20px;
 }
 .tabela-vendas th, .tabela-vendas td {
+    border: 1px solid #ddd;
     padding: 8px;
     text-align: left;
 }
 .tabela-vendas th {
     background-color: #f2f2f2;
+}
+
+.form-fruta {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-input,
+.form-checkbox,
+.form-submit {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box; /* Makes sure the padding doesn't affect the final computed width of the input */
+}
+
+.form-checkbox {
+    width: auto;
+}
+
+.form-submit {
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+}
+
+.form-submit:hover {
+    background-color: #45a049;
+}
+
+.titulo-vendedores {
+    color: #333;
+    font-family: Arial, sans-serif;
+}
+
+.tabela-vendedores {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tabela-vendedores th, .tabela-vendedores td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.linha-vendedor:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.botao-editar, .botao-excluir {
+    text-decoration: none;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.botao-editar {
+    background-color: #4CAF50; /* Green */
+}
+
+.botao-excluir {
+    background-color: #f44336; /* Red */
 }

@@ -10,10 +10,11 @@ class Fruta(models.Model):
     classificacao = models.CharField(max_length=100)
     fresca = models.BooleanField(default=True)
     qtd_estoque = models.IntegerField()
-    preco = models.DecimalField(max_digits=5, decimal_places=2)
+    preco = models.FloatField(default=0.00)
 
 class Vendas(models.Model):
     fruta = models.ForeignKey(Fruta, on_delete=models.CASCADE)    
     qtd_vendida = models.IntegerField()
     vendedor_id = models.PositiveIntegerField()
+    valor_venda = models.FloatField(default=0.00)
     data_venda = models.DateTimeField(auto_now_add=True)

@@ -28,4 +28,25 @@
         </div>
         <button type="submit">Cadastre</button>
     </form>
+
+    <h2 class="titulo-vendedores">Vendedores Cadastrados</h2>
+    <table class="tabela-vendedores">
+        <thead>
+            <tr>
+                <th>Nome</th>                
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+                <tr class="linha-vendedor">
+                    <td>{{ user.nome }}</td>                    
+                    <td>
+                        <a href="{% url 'edit_user' user.id %}" class="botao-editar">Editar</a> |
+                        <a href="{% url 'delete_user' user.id %}" class="botao-excluir" onclick="return confirm('Tem certeza que deseja excluir este usuário?');">Excluir</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}

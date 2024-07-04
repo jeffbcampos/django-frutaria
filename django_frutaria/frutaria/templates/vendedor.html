@@ -16,17 +16,36 @@
         <label for="produto" class="rotulo">Produto:</label>
         <select name="fruta" id="fruta" class="selecao">
             {% for fruta in frutas %}
-            <option value="{{ fruta.id }}">{{ fruta.nome }}</option>
+            <option value="{{ fruta.id }}" data-qtd-estoque="{{ fruta.qtd_estoque }}">{{ fruta.nome }}</option>            
             {% endfor %}
-        </select>
+        </select>                
         <label for="quantidade" class="rotulo">Quantidade:</label>
-        <input type="number" name="quantidade" id="quantidade" class="entrada">        
-        <input type="submit" value="Realizar Venda" class="botao">
+        <input type="number" name="quantidade" id="quantidade" class="entrada" min="0">
+        <label for="desconto" class="rotulo">Desconto:</label>
+        <select name="desconto" id="desconto" class="selecao" hx-get="{% url 'calcular_valor_final' %}" hx-target="#valor_final" hx-include="#fruta, #quantidade">
+            <option value="0%">Sem Desconto</option>
+            <option value="0.05">5%</option>
+            <option value="0.10">10%</option>
+            <option value="0.15">15%</option>
+            <option value="0.20">20%</option>
+            <option value="0.25">25%</option>
+        </select>        
+        <input type="submit" value="Realizar Venda" class="botao">        
+        <label for="valor" class="rotulo"></label>
+        <p id="valor_final" class="valor_final">{{ valor_final }}</p>
     </form>
     
     <h2 class="titulo-secao">Relatório de Vendas</h2>
     <form action="{% url 'relatorioVendedor' vendedor_id %}" method="get" class="formulario">
-        <!-- Add report filters here -->
+        
         <input type="submit" value="Gerar Relatório" class="botao">
     </form>
+
+    <script>
+        document.getElementById('fruta').addEventListener('change', function() {
+            var selectedOption = this.options[this.selectedIndex];
+            var qtdEstoque = selectedOption.getAttribute('data-qtd-estoque');
+            document.getElementById('quantidade').max = qtdEstoque;
+        });
+    </script>
 {% endblock %}
