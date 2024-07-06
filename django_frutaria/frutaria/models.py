@@ -18,3 +18,4 @@ class Vendas(models.Model):
     vendedor_id = models.PositiveIntegerField()
     valor_venda = models.FloatField(default=0.00)
     data_venda = models.DateTimeField(auto_now_add=True)
+    

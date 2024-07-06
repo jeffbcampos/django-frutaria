@@ -15,10 +15,15 @@
         {% csrf_token %}
         <label for="produto" class="rotulo">Produto:</label>
         <select name="fruta" id="fruta" class="selecao">
+            <option value="" selected disabled>Selecione uma fruta</option>
             {% for fruta in frutas %}
-            <option value="{{ fruta.id }}" data-qtd-estoque="{{ fruta.qtd_estoque }}">{{ fruta.nome }}</option>            
-            {% endfor %}
-        </select>                
+            <option value="{{ fruta.id }}" data-qtd-estoque="{{ fruta.qtd_estoque }}" data-classificacao="{{ fruta.classificacao }}">{{ fruta.nome }}</option>                        
+            {% endfor %}            
+        </select>
+        <label for="classificacao" class="rotulo">Classificação:</label>
+        <select name="classificacao" id="classificacao" class="selecao">                
+            <option value="{{ fruta.classificacao }}">{{ fruta.classificacao }}</option>                
+        </select>                               
         <label for="quantidade" class="rotulo">Quantidade:</label>
         <input type="number" name="quantidade" id="quantidade" class="entrada" min="0">
         <label for="desconto" class="rotulo">Desconto:</label>
@@ -46,6 +51,23 @@
             var selectedOption = this.options[this.selectedIndex];
             var qtdEstoque = selectedOption.getAttribute('data-qtd-estoque');
             document.getElementById('quantidade').max = qtdEstoque;
+        });
+        document.addEventListener('DOMContentLoaded', function() {
+            const frutaSelect = document.getElementById('fruta');
+            const classificacaoSelect = document.getElementById('classificacao');
+        
+            frutaSelect.addEventListener('change', function() {
+                // Limpa as opções de classificação existentes
+                classificacaoSelect.innerHTML = '';
+        
+                // Encontra a classificação da fruta selecionada
+                const selectedFruta = this.options[this.selectedIndex];
+                const classificacao = selectedFruta.getAttribute('data-classificacao');
+        
+                // Cria uma nova opção de classificação e a adiciona ao select de classificação
+                const option = new Option(classificacao, classificacao);
+                classificacaoSelect.add(option);
+            });
         });
     </script>
 {% endblock %}
