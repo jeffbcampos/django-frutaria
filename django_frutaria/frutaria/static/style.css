@@ -9,6 +9,16 @@ body {
     align-items: center;
 }
 
+a {
+    text-decoration: none;
+
+}
+
+#botao-panel {
+    width: 50%;
+    text-align: center;
+}
+
 .login-page,
 .cadastro-form,
 .container,
@@ -47,12 +57,41 @@ body {
     margin-top: 10px;
 }
 
+.panel-admin {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin-top: 20px;
+    text-align: center;
+}
+.panel-admin a {
+    display: inline-block;
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+.panel-admin a:hover {
+    background-color: #4CAF50;
+}
+h1 {
+    color: #4CAF50;
+}
+
+.home {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 20px;
+    font-weight: bold;
+}
+
 .login-form button,
 .cadastro-form button,
 .botao {
-    width: 100%;
+    width: 90%;
     padding: 10px;
-    background-color: #333;
+    background-color: #4CAF50;
     color: #fff;
     border: none;
     border-radius: 3px;

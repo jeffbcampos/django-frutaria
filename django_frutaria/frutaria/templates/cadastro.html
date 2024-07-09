@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h2>Registrar</h2>
+    
     {% if messages %}
     <ul class="messages">
         {% for message in messages %}
@@ -11,6 +11,7 @@
     {% endif %}
     <form method="POST" class="cadastro-form" action="{% url 'create_user' %}">
         {% csrf_token %}
+        <h2>Registrar</h2>
         <div>
             <label for="nome">Username:</label>
             <input type="text" id="username" name="nome" required>
@@ -26,7 +27,8 @@
                 <option value="vendedor">Vendedor</option>
             </select>
         </div>
-        <button type="submit">Cadastre</button>
+        <button type="submit" class="botao">Cadastre</button>
+        <a href="{% url 'admin-panel' %}" class="botao" id="botao-panel">Voltar ao painel</a>
     </form>
 
     <h2 class="titulo-vendedores">Vendedores Cadastrados</h2>

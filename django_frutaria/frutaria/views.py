@@ -12,10 +12,6 @@ from django.views.decorators.cache import never_cache
 
 import json
 
-class IndexView(TemplateView):
-    template_name = 'index.html'
-
-
 class Index(View):
     def get(self, request):
         return render(request, 'index.html')
@@ -29,24 +25,27 @@ class Index(View):
             
             if hashpw(senha.encode('utf-8'), user.password.encode('utf-8')) == user.password.encode('utf-8'):
                 if user.is_admin:
-                    return render(request, 'admin.html') 
+                    return redirect('admin-panel') 
                 else:
                     return redirect(reverse('sale', kwargs={'vendedor': user.id}))  
             else:
                 return HttpResponse('Usuário ou senha inválidos!')
             
         except User.DoesNotExist:
-            return HttpResponse('Usuário ou senha inválidos!')    
+            return HttpResponse('Usuário ou senha inválidos!') 
+        
+def admin_view(request):
+    return render(request, 'admin.html')   
 
 def cadastro(request):
     if request.method == 'GET':
         users = User.objects.filter(is_admin=False)
         print(users)
         return render(request, 'cadastro.html', {'users': users})    
-
+ 
     
 @csrf_exempt
-def create_user(request):    
+def create_user(request):        
     if request.method == 'POST':
         data = request.POST
         nome = data.get('nome')
@@ -55,7 +54,7 @@ def create_user(request):
         
         if User.objects.filter(nome=nome).exists():
             messages.success(request, 'Usuário já existe!')
-            return redirect('create_user')
+            return redirect('cadastro')
         
         is_admin = True if role == 'admin' else False
         
@@ -82,7 +81,7 @@ def delete_user(request, user_id):
     user = get_object_or_404(User, pk=user_id)
     user.delete()
     messages.success(request, 'Usuário deletado!')
-    return redirect('create_user')    
+    return redirect('cadastro')    
 
 @csrf_exempt
 def create_fruit(request):
