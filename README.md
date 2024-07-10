@@ -1,14 +1,14 @@
 # django-frutaria
-#Sistema de Gerenciamento de Vendas de Frutas
-##Sobre o Projeto
+# Sistema de Gerenciamento de Vendas de Frutas
+## Sobre o Projeto
 Este projeto é um sistema de gerenciamento de vendas desenvolvido para permitir que vendedores registrem vendas de frutas, gerenciem o estoque e visualizem informações sobre as vendas realizadas. O sistema é capaz de ajustar automaticamente o estoque de frutas após cada venda e calcular o valor da venda com base na quantidade vendida e no desconto aplicado.
 
-##Tecnologias Utilizadas
+## Tecnologias Utilizadas
 Backend: Python, Django
 Frontend: HTML, CSS, JavaScript
 Banco de Dados: SQLite (ou especificar outro, se aplicável)
 
-##Como Configurar e Executar
+## Como Configurar e Executar
 Pré-requisitos
 Python 3.8+
 Django 3.2+
