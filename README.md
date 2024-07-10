@@ -9,13 +9,18 @@ Frontend: HTML, CSS, JavaScript
 Banco de Dados: SQLite (ou especificar outro, se aplicável)
 
 ## Como Configurar e Executar
-Pré-requisitos
-Python 3.8+
-Django 3.2+
-Configuração
-Clone o repositório do projeto:
-Navegue até o diretório do projeto:
-Instale as dependências necessárias:
-Realize as migrações do banco de dados:
-Execute o servidor de desenvolvimento:
-Acesse http://localhost:8000 no seu navegador para visualizar o projeto.
+
+### Pré-requisitos
+
+- Python 3.8+
+- Django 3.2+
+
+### Configuração
+
+1. Clone o repositório do projeto.
+2. Navegue até o diretório do projeto.
+3. Instale as dependências necessárias.
+4. Realize as migrações do banco de dados.
+5. Execute o servidor de desenvolvimento.
+
+Acesse `http://localhost:8000` no seu navegador para visualizar o projeto.
