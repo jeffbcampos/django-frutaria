@@ -44,7 +44,7 @@ def cadastro(request):
         return render(request, 'cadastro.html', {'users': users})    
  
     
-@csrf_exempt
+
 def create_user(request):        
     if request.method == 'POST':
         data = request.POST
@@ -84,7 +84,7 @@ def delete_user(request, user_id):
     return redirect('cadastro')    
 
 
-@csrf_exempt
+
 def create_fruit(request):
     if request.method == 'GET':
         frutas = Fruta.objects.all()
@@ -125,11 +125,11 @@ def fruit_delete(request, fruta_id):
     messages.success(request, 'Fruta deletada!')
     return redirect('create_fruit')
 
-@csrf_exempt    
+    
 def create_seller(request):
     return render(request, 'create_seller.html')
 
-@csrf_exempt
+
 @never_cache
 def sale(request, vendedor):
     if request.method == 'GET':
@@ -151,7 +151,7 @@ def sale(request, vendedor):
     messages.success(request, 'Venda realizada!')
     return redirect(reverse('sale', kwargs={'vendedor': vendedor}))
 
-@csrf_exempt
+
 def relatorioVendedor(request, vendedor):    
     vendas = Vendas.objects.filter(vendedor_id=vendedor)
     # Renderiza um template, passando 'vendas' e 'vendedor' como contexto
