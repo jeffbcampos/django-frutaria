@@ -10,8 +10,6 @@ from django.views.generic import TemplateView
 from django.contrib import messages
 from django.views.decorators.cache import never_cache
 
-import json
-
 class Index(View):
     def get(self, request):
         return render(request, 'index.html')
@@ -32,7 +30,8 @@ class Index(View):
                 return HttpResponse('Usuário ou senha inválidos!')
             
         except User.DoesNotExist:
-            return HttpResponse('Usuário ou senha inválidos!') 
+            messages.success(request, 'Usuário ou Senha inválidos!')
+            return render(request, 'index.html') 
         
 def admin_view(request):
     return render(request, 'admin.html')   
@@ -82,6 +81,7 @@ def delete_user(request, user_id):
     user.delete()
     messages.success(request, 'Usuário deletado!')
     return redirect('cadastro')    
+
 
 @csrf_exempt
 def create_fruit(request):
@@ -148,7 +148,7 @@ def sale(request, vendedor):
     venda.save()
     
     messages.success(request, 'Venda realizada!')
-    return render(request, 'vendedor.html', {'vendedor_id': vendedor, })
+    return redirect(reverse('sale', kwargs={'vendedor': vendedor}))
 
 @csrf_exempt
 def relatorioVendedor(request, vendedor):    

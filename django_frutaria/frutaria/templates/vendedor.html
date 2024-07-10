@@ -17,7 +17,7 @@
         <select name="fruta" id="fruta" class="selecao">
             <option value="" selected disabled>Selecione uma fruta</option>
             {% for fruta in frutas %}
-            <option value="{{ fruta.id }}" data-qtd-estoque="{{ fruta.qtd_estoque }}" data-classificacao="{{ fruta.classificacao }}">{{ fruta.nome }}</option>                        
+            <option value="{{ fruta.id }}" data-qtd-estoque="{{ fruta.qtd_estoque }}" data-classificacao="{{ fruta.classificacao }}" data-valor-sem-desconto="{{ fruta.preco }}">{{ fruta.nome }}</option>                        
             {% endfor %}            
         </select>
         <label for="classificacao" class="rotulo">Classificação:</label>
@@ -25,7 +25,7 @@
             <option value="{{ fruta.classificacao }}">{{ fruta.classificacao }}</option>                
         </select>                               
         <label for="quantidade" class="rotulo">Quantidade:</label>
-        <input type="number" name="quantidade" id="quantidade" class="entrada" min="0">
+        <input type="number" name="quantidade" id="quantidade" class="entrada" min="1">
         <label for="desconto" class="rotulo">Desconto:</label>
         <select name="desconto" id="desconto" class="selecao" hx-get="{% url 'calcular_valor_final' %}" hx-target="#valor_final" hx-include="#fruta, #quantidade">
             <option value="0%">Sem Desconto</option>
@@ -51,23 +51,57 @@
             var selectedOption = this.options[this.selectedIndex];
             var qtdEstoque = selectedOption.getAttribute('data-qtd-estoque');
             document.getElementById('quantidade').max = qtdEstoque;
+            document.getElementById('quantidade').value = 1; // Set the minimum quantity to 1
+            
+            var valorSemDesconto = selectedOption.getAttribute('data-valor-sem-desconto');
+            document.getElementById('valor_final').textContent = valorSemDesconto;
         });
         document.addEventListener('DOMContentLoaded', function() {
             const frutaSelect = document.getElementById('fruta');
             const classificacaoSelect = document.getElementById('classificacao');
+            const valorFinalParagrafo = document.getElementById('valor_final'); // Seleciona o parágrafo onde o valor final será exibido
         
             frutaSelect.addEventListener('change', function() {
                 // Limpa as opções de classificação existentes
                 classificacaoSelect.innerHTML = '';
         
-                // Encontra a classificação da fruta selecionada
+                // Encontra a classificação e o valor sem desconto da fruta selecionada
                 const selectedFruta = this.options[this.selectedIndex];
                 const classificacao = selectedFruta.getAttribute('data-classificacao');
+                const valorSemDesconto = selectedFruta.getAttribute('data-valor-sem-desconto'); // Obtém o valor sem desconto
         
                 // Cria uma nova opção de classificação e a adiciona ao select de classificação
                 const option = new Option(classificacao, classificacao);
                 classificacaoSelect.add(option);
+        
+                // Atualiza o valor final sem desconto
+                valorFinalParagrafo.textContent = `Valor sem desconto: ${valorSemDesconto}`; // Exibe o valor sem desconto
             });
+        });
+        document.addEventListener('DOMContentLoaded', function() {
+            const frutaSelect = document.getElementById('fruta');
+            const quantidadeInput = document.getElementById('quantidade');
+            const descontoSelect = document.getElementById('desconto');
+            const valorFinalParagrafo = document.getElementById('valor_final');
+        
+            // Função para atualizar o valor final
+            function atualizarValorFinal() {
+                const selectedFruta = frutaSelect.options[frutaSelect.selectedIndex];
+                const valorUnitario = parseFloat(selectedFruta.getAttribute('data-valor-sem-desconto')); // Obtém o valor unitário da fruta selecionada
+                const quantidade = parseInt(quantidadeInput.value); // Obtém a quantidade selecionada
+                const descontoSelecionado = parseFloat(descontoSelect.value); // Obtém o desconto selecionado
+                let valorFinal = valorUnitario * quantidade; // Calcula o valor final sem desconto
+        
+                // Aplica o desconto ao valor final, se houver
+                valorFinal -= valorFinal * descontoSelecionado;
+        
+                valorFinalParagrafo.textContent = `Valor final: ${valorFinal.toFixed(2)}`; // Atualiza o texto do valor final
+            }
+        
+            // Atualiza o valor final quando uma nova fruta é selecionada ou a quantidade é alterada
+            frutaSelect.addEventListener('change', atualizarValorFinal);
+            quantidadeInput.addEventListener('input', atualizarValorFinal);
+            descontoSelect.addEventListener('change', atualizarValorFinal);
         });
     </script>
 {% endblock %}
