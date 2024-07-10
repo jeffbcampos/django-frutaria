@@ -27,7 +27,8 @@ class Index(View):
                 else:
                     return redirect(reverse('sale', kwargs={'vendedor': user.id}))  
             else:
-                return HttpResponse('Usuário ou senha inválidos!')
+                messages.success(request, 'Senha incorreta!')
+                return render(request, 'index.html')
             
         except User.DoesNotExist:
             messages.success(request, 'Usuário ou Senha inválidos!')
