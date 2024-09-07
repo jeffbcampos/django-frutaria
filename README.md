@@ -6,7 +6,7 @@ Este projeto é um sistema de gerenciamento de vendas desenvolvido para permitir
 ## Tecnologias Utilizadas
 Backend: Python, Django
 Frontend: HTML, CSS, JavaScript
-Banco de Dados: SQLite (ou especificar outro, se aplicável)
+Banco de Dados: SQLite
 
 ## Como Configurar e Executar
 
